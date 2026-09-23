@@ -1,0 +1,14 @@
+{
+  "name": "airflow-lab-docker",
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+  "features": {
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {}
+  },
+  "postCreateCommand": "mkdir -p ./dags ./logs ./plugins ./config && echo -e \"AIRFLOW_UID=$(id -u)\" > .env",
+  "postStartCommand": "docker compose up -d",
+  "forwardPorts": [8080],
+  "portsAttributes": {
+    "8080": { "label": "Airflow UI", "onAutoForward": "notify" }
+  },
+  "waitFor": "postStartCommand"
+}
