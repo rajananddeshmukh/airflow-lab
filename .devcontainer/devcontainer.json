@@ -2,8 +2,14 @@
   "name": "airflow-lab",
   "image": "mcr.microsoft.com/devcontainers/python:3.11",
   "postCreateCommand": "bash .devcontainer/setup.sh",
+  "postStartCommand": "bash .devcontainer/start.sh",
   "forwardPorts": [8080],
   "portsAttributes": {
     "8080": { "label": "Airflow UI", "onAutoForward": "notify" }
+  },
+  "containerEnv": {
+    "AIRFLOW_HOME": "/workspaces/airflow-lab/airflow_home",
+    "AIRFLOW__CORE__DAGS_FOLDER": "/workspaces/airflow-lab/dags",
+    "AIRFLOW__CORE__LOAD_EXAMPLES": "false"
   }
 }
